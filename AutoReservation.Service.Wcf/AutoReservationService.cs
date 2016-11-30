@@ -77,12 +77,17 @@ namespace AutoReservation.Service.Wcf {
                 bc.UpdateKunde(kunde.ConvertToEntity());
             }
             catch (LocalOptimisticConcurrencyException<KundeDto>) {
-
+                Crea
             }
         }
 
         public void UpdateReservation(ReservationDto reservation) {
-            throw new NotImplementedException();
+            try {
+                bc.UpdateReservation(reservation.ConvertToEntity());
+            }
+            catch (LocalOptimisticConcurrencyException<ReservationDto>) {
+
+            }
         }
     }
 }
