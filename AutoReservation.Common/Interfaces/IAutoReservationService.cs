@@ -16,5 +16,11 @@ namespace AutoReservation.Common.Interfaces
         void InsertKunde(KundeDto kunde);
         void UpdateKunde(KundeDto kunde);
         void DeleteKunde(KundeDto kunde);
+
+        IList<ReservationDto> GetReservationen();
+        ReservationDto GetReservationById(int Id);
+        void InsertReservation(ReservationDto reservation);
+        void UpdateReservation(ReservationDto reservation);
+        void DeleteReservation(ReservationDto reservation);
     }
 }
