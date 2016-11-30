@@ -78,28 +78,28 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void InsertAuto(AutoDto auto) {
+        public void InsertAuto(Auto auto) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(auto).State = EntityState.Added;
                 db.SaveChanges();
             }
         }
 
-        public void InsertKunde(KundeDto kunde) {
+        public void InsertKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(kunde).State = EntityState.Added;
                 db.SaveChanges();
             }
         }
 
-        public void InsertReservation(ReservationDto reservation) {
+        public void InsertReservation(Reservation reservation) {
             using (var db = new AutoReservationContext) {
                 db.Entry(reservation).State = EntityState.Added;
                 db.SaveChanges();
             }
         }
 
-        public void UpdateAuto(AutoDto auto) {
+        public void UpdateAuto(Auto auto) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(auto).State = EntityState.Modified;
@@ -111,7 +111,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void UpdateKunde(KundeDto kunde) {
+        public void UpdateKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(kunde).State = EntityState.Modified;
@@ -122,7 +122,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void UpdateReservation(ReservationDto reservation) {
+        public void UpdateReservation(Reservation reservation) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(reservation).State = EntityState.Modified;
@@ -133,21 +133,21 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void DeleteAuto(AutoDto auto) {
+        public void DeleteAuto(Auto auto) {
             using (var db = new AutoReservationContext) {
                 db.Entry(auto).State = EntityState.Deleted;
                 db.SaveChanges();
             }
         }
 
-        public void DeleteKunde(KundeDto kunde) {
+        public void DeleteKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(kunde).State = EntityState.Deleted;
                 db.SaveChanges();
             }
         }
 
-        public void DeleteReservation(ReservationDto reservation) {
+        public void DeleteReservation(Reservation reservation) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(reservation).State = EntityState.Deleted;
                 db.SaveChanges();

@@ -16,68 +16,69 @@ namespace AutoReservation.Service.Wcf {
         }
 
         public void DeleteAuto(AutoDto auto) {
-            throw new NotImplementedException();
+            bc.DeleteAuto(auto.ConvertToEntity());
         }
 
         public void DeleteKunde(KundeDto kunde) {
-            throw new NotImplementedException();
+            bc.DeleteKunde(kunde.ConvertToEntity());
         }
 
         public void DeleteReservation(ReservationDto reservation) {
-            throw new NotImplementedException();
+            bc.DeleteReservation(reservation.ConvertToEntity());
         }
 
         public AutoDto GetAutoById(int Id) {
-            using (var db = new AutoReservationContext()) {
-                AutoDto auto = db.Autos.Find(Id).ConvertToDto();
-                if (auto != null) {
-                    return auto;
-                } else //FaultException {
-                    throw new Exception();
-            }
+            return bc.GetAutoById(Id).ConvertToDto();
         }
 
         public IList<AutoDto> GetAutos() {
-            using (var db = new AutoReservationContext()) {
-                List<AutoDto> list = db.Autos.ConvertToDtos();
-                return list;
-            }
+            return bc.GetAutos().ConvertToDtos();
         }
 
         public KundeDto GetKundeById(int Id) {
-            throw new NotImplementedException();
+            return bc.GetKundeById(Id).ConvertToDto();
         }
 
         public IList<KundeDto> GetKunden() {
-            throw new NotImplementedException();
+            return bc.GetKunden().ConvertToDtos();
         }
 
         public ReservationDto GetReservationById(int Id) {
-            throw new NotImplementedException();
+            return bc.GetReservationById(Id).ConvertToDto();
         }
 
         public IList<ReservationDto> GetReservationen() {
-            throw new NotImplementedException();
+            return bc.GetReservationen().ConvertToDtos();
         }
 
         public void InsertAuto(AutoDto auto) {
-            throw new NotImplementedException();
+            bc.InsertAuto(auto.ConvertToEntity());
         }
 
         public void InsertKunde(KundeDto kunde) {
-            throw new NotImplementedException();
+            bc.InsertKunde(kunde.ConvertToEntity());
         }
 
         public void InsertReservation(ReservationDto reservation) {
-            throw new NotImplementedException();
+            bc.InsertReservation(reservation.ConvertToEntity());
         }
-
+        //Exceptionhandling
         public void UpdateAuto(AutoDto auto) {
-            throw new NotImplementedException();
+            try {
+                bc.UpdateAuto(auto.ConvertToEntity());
+            }
+            catch (LocalOptimisticConcurrencyException<AutoDto>) {
+                
+            }
         }
 
         public void UpdateKunde(KundeDto kunde) {
-            throw new NotImplementedException();
+            try {
+                bc.UpdateKunde(kunde.ConvertToEntity());
+            }
+            catch (LocalOptimisticConcurrencyException<KundeDto>) {
+
+            }
         }
 
         public void UpdateReservation(ReservationDto reservation) {
