@@ -61,7 +61,30 @@ namespace AutoReservation.Common.DataTransferObjects
                 }
             }
         }
-     
+        private AutoDto auto;
+        public virtual AutoDto Auto
+        {
+            get { return auto; }
+            set
+            {
+                if (auto != value) {
+                    auto = value;
+                    OnPropertyChanged(nameof(Auto));
+                }
+            }
+        }
+        private KundeDto kunde;
+        public virtual KundeDto Kunde
+        {
+            get { return kunde; }
+            set
+            {
+                if (kunde != value) {
+                    kunde = value;
+                    OnPropertyChanged(nameof(Kunde));
+                }
+            }
+        }
 
         public override string Validate()
         {
@@ -110,6 +133,5 @@ namespace AutoReservation.Common.DataTransferObjects
 
         public override string ToString()
             => $"{ReservationsNr}; {Von}; {Bis}; {Auto}; {Kunde}";
-
     }
 }   
