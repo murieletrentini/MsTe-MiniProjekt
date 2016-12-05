@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using AutoReservation.Dal;
 using AutoReservation.Dal.Entities;
 using AutoReservation.BusinessLayer;
+using System.ServiceModel;
 
 namespace AutoReservation.Service.Wcf {
     public class AutoReservationService : IAutoReservationService {
@@ -77,7 +78,7 @@ namespace AutoReservation.Service.Wcf {
                 bc.UpdateKunde(kunde.ConvertToEntity());
             }
             catch (LocalOptimisticConcurrencyException<KundeDto>) {
-                Crea
+                
             }
         }
 
@@ -86,7 +87,7 @@ namespace AutoReservation.Service.Wcf {
                 bc.UpdateReservation(reservation.ConvertToEntity());
             }
             catch (LocalOptimisticConcurrencyException<ReservationDto>) {
-
+                
             }
         }
     }
