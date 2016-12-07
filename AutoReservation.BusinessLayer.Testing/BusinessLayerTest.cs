@@ -31,7 +31,10 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateAutoTest()
         {
-            Assert.Inconclusive("Test not implemented.");
+            Auto changeAuto = Target.GetAutos()[0];
+            changeAuto.Marke = "TestMarke";
+            Target.UpdateAuto(changeAuto);
+            Assert.AreEqual(changeAuto, Target.GetAutos()[0]);
         }
 
         [TestMethod]
