@@ -45,7 +45,7 @@ namespace AutoReservation.Common.DataTransferObjects
             get { return marke; }
             set
             {
-                if (!marke.Equals(value))
+                if (marke != value)
                 {
                     marke = value;
                     OnPropertyChanged(nameof(Marke));
