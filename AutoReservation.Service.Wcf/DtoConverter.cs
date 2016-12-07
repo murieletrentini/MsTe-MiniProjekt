@@ -12,7 +12,7 @@ namespace AutoReservation.Service.Wcf
         private static Auto GetAutoInstance(AutoDto dto)
         {
             if (dto.AutoKlasse == AutoKlasse.Standard) { return new StandardAuto(); }
-            if (dto.AutoKlasse == AutoKlasse.Mittelklasse) { return new MittelklasseAuto(); }
+            if (dto.AutoKlasse == AutoKlasse.Mittelklasse) { return new MittelKlasseAuto(); }
             if (dto.AutoKlasse == AutoKlasse.Luxusklasse) { return new LuxusklasseAuto(); }
             throw new ArgumentException("Unknown AutoDto implementation.", nameof(dto));
         }
@@ -28,7 +28,7 @@ namespace AutoReservation.Service.Wcf
 
             if (auto is LuxusklasseAuto)
             {
-                ((LuxusklasseAuto)auto).Basistarif = dto.Basistarif;
+                ((LuxusklasseAuto)auto).BasisTarif = dto.Basistarif;
             }
             return auto;
         }
@@ -45,11 +45,11 @@ namespace AutoReservation.Service.Wcf
             };
 
             if (entity is StandardAuto) { dto.AutoKlasse = AutoKlasse.Standard; }
-            if (entity is MittelklasseAuto) { dto.AutoKlasse = AutoKlasse.Mittelklasse; }
+            if (entity is MittelKlasseAuto) { dto.AutoKlasse = AutoKlasse.Mittelklasse; }
             if (entity is LuxusklasseAuto)
             {
                 dto.AutoKlasse = AutoKlasse.Luxusklasse;
-                dto.Basistarif = ((LuxusklasseAuto)entity).Basistarif;
+                dto.Basistarif = ((LuxusklasseAuto)entity).BasisTarif;
             }
 
 

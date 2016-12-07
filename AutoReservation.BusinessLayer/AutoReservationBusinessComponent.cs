@@ -78,28 +78,31 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void InsertAuto(Auto auto) {
+        public Auto InsertAuto(Auto auto) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(auto).State = EntityState.Added;
                 db.SaveChanges();
             }
+            return auto;
         }
 
-        public void InsertKunde(Kunde kunde) {
+        public Kunde InsertKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(kunde).State = EntityState.Added;
                 db.SaveChanges();
             }
+            return kunde;
         }
 
-        public void InsertReservation(Reservation reservation) {
-            using (var db = new AutoReservationContext) {
+        public Reservation InsertReservation(Reservation reservation) {
+            using (var db = new AutoReservationContext()) {
                 db.Entry(reservation).State = EntityState.Added;
                 db.SaveChanges();
             }
+            return reservation;
         }
 
-        public void UpdateAuto(Auto auto) {
+        public Auto UpdateAuto(Auto auto) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(auto).State = EntityState.Modified;
@@ -108,10 +111,11 @@ namespace AutoReservation.BusinessLayer
                 catch (DbUpdateConcurrencyException) {
                     throw CreateLocalOptimisticConcurrencyException(db, auto);
                 }
+                return auto;
             }
         }
 
-        public void UpdateKunde(Kunde kunde) {
+        public Kunde UpdateKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(kunde).State = EntityState.Modified;
@@ -119,10 +123,11 @@ namespace AutoReservation.BusinessLayer
                 } catch (DbUpdateConcurrencyException) {
                     throw CreateLocalOptimisticConcurrencyException(db, kunde);
                 }
+                return kunde;
             }
         }
 
-        public void UpdateReservation(Reservation reservation) {
+        public Reservation UpdateReservation(Reservation reservation) {
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(reservation).State = EntityState.Modified;
@@ -130,28 +135,32 @@ namespace AutoReservation.BusinessLayer
                 } catch (DbUpdateConcurrencyException) {
                     throw CreateLocalOptimisticConcurrencyException(db, reservation);
                 }
+                return reservation;
             }
         }
 
-        public void DeleteAuto(Auto auto) {
-            using (var db = new AutoReservationContext) {
+        public Auto DeleteAuto(Auto auto) {
+            using (var db = new AutoReservationContext()) {
                 db.Entry(auto).State = EntityState.Deleted;
                 db.SaveChanges();
             }
+            return auto;
         }
 
-        public void DeleteKunde(Kunde kunde) {
+        public Kunde DeleteKunde(Kunde kunde) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(kunde).State = EntityState.Deleted;
                 db.SaveChanges();
             }
+            return kunde;
         }
 
-        public void DeleteReservation(Reservation reservation) {
+        public Reservation DeleteReservation(Reservation reservation) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(reservation).State = EntityState.Deleted;
                 db.SaveChanges();
             }
+            return reservation;
         }
     }
 }
