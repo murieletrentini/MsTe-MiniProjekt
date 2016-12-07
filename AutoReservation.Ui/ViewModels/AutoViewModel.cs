@@ -49,7 +49,7 @@ namespace AutoReservation.Ui.ViewModels
         protected override void Load()
         {
             Autos.Clear();
-            foreach (var auto in Service.Autos)
+            foreach (var auto in Service.GetAutos())
             {
                 Autos.Add(auto);
             }

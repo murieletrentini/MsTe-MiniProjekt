@@ -51,7 +51,7 @@ namespace AutoReservation.Ui.ViewModels
         protected override void Load()
         {
             Kunden.Clear();
-            foreach (var kunde in Service.Kunden)
+            foreach (var kunde in Service.GetKunden())
             {
                 Kunden.Add(kunde);
             }
