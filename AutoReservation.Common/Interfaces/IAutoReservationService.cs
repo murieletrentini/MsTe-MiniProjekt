@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace AutoReservation.Common.Interfaces
 {
-    [ServiceContract]
+    [ServiceContract] //DataContract ?
     public interface IAutoReservationService
     {
         [OperationContract]
