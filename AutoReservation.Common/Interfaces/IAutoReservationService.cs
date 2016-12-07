@@ -4,43 +4,43 @@ using System.ServiceModel;
 
 namespace AutoReservation.Common.Interfaces
 {
-    [ServiceContract]
+    [ServiceContract] //DataContract ?
     public interface IAutoReservationService
     {
         [OperationContract]
-        IList<AutoDto> GetAutos();
+        List<AutoDto> GetAutos();
         [OperationContract]
         AutoDto GetAutoById(int Id);
         [OperationContract]
-        void InsertAuto(AutoDto auto);
+        AutoDto InsertAuto(AutoDto auto);
         [OperationContract]
-        [FaultContract(typeof(LocalOptimisticConcourrencyException))]
-        void UpdateAuto(AutoDto auto);
+        [FaultContract(typeof(AutoDto))]
+        AutoDto UpdateAuto(AutoDto auto);
         [OperationContract]
-        void DeleteAuto(AutoDto auto);
+        AutoDto DeleteAuto(AutoDto auto);
 
         [OperationContract]
-        IList<KundeDto> GetKunden();
+        List<KundeDto> GetKunden();
         [OperationContract]
         KundeDto GetKundeById(int Id);
         [OperationContract]
-        void InsertKunde(KundeDto kunde);
+        KundeDto InsertKunde(KundeDto kunde);
         [OperationContract]
-        [FaultContract(typeof(LocalOptimisticConcourrencyException))]
-        void UpdateKunde(KundeDto kunde);
+        [FaultContract(typeof(KundeDto))]
+        KundeDto UpdateKunde(KundeDto kunde);
         [OperationContract]
-        void DeleteKunde(KundeDto kunde);
+        KundeDto DeleteKunde(KundeDto kunde);
 
         [OperationContract]
-        IList<ReservationDto> GetReservationen();
+        List<ReservationDto> GetReservationen();
         [OperationContract]
         ReservationDto GetReservationById(int Id);
         [OperationContract]
-        void InsertReservation(ReservationDto reservation);
+        ReservationDto InsertReservation(ReservationDto reservation);
         [OperationContract]
-        [FaultContract(typeof(LocalOptimisticConcourrencyException))]
-        void UpdateReservation(ReservationDto reservation);
+        [FaultContract(typeof(ReservationDto))]
+        ReservationDto UpdateReservation(ReservationDto reservation);
         [OperationContract]
-        void DeleteReservation(ReservationDto reservation);
+        ReservationDto DeleteReservation(ReservationDto reservation);
     }
 }

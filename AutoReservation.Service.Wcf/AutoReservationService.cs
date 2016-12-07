@@ -7,32 +7,37 @@ using AutoReservation.Dal;
 using AutoReservation.Dal.Entities;
 using AutoReservation.BusinessLayer;
 using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace AutoReservation.Service.Wcf {
+    
     public class AutoReservationService : IAutoReservationService {
         AutoReservationBusinessComponent bc = new AutoReservationBusinessComponent();
-
+        
         private static void WriteActualMethod() {
             Console.WriteLine($"Calling: {new StackTrace().GetFrame(1).GetMethod().Name}");
         }
-
-        public void DeleteAuto(AutoDto auto) {
+       
+        public AutoDto DeleteAuto(AutoDto auto) {
             bc.DeleteAuto(auto.ConvertToEntity());
+            return auto;
         }
 
-        public void DeleteKunde(KundeDto kunde) {
+        public KundeDto DeleteKunde(KundeDto kunde) {
             bc.DeleteKunde(kunde.ConvertToEntity());
+            return kunde;
         }
 
-        public void DeleteReservation(ReservationDto reservation) {
+        public ReservationDto DeleteReservation(ReservationDto reservation) {
             bc.DeleteReservation(reservation.ConvertToEntity());
+            return reservation;
         }
 
         public AutoDto GetAutoById(int Id) {
             return bc.GetAutoById(Id).ConvertToDto();
         }
 
-        public IList<AutoDto> GetAutos() {
+        public List<AutoDto> GetAutos() {
             return bc.GetAutos().ConvertToDtos();
         }
 
@@ -40,7 +45,7 @@ namespace AutoReservation.Service.Wcf {
             return bc.GetKundeById(Id).ConvertToDto();
         }
 
-        public IList<KundeDto> GetKunden() {
+        public List<KundeDto> GetKunden() {
             return bc.GetKunden().ConvertToDtos();
         }
 
@@ -48,47 +53,53 @@ namespace AutoReservation.Service.Wcf {
             return bc.GetReservationById(Id).ConvertToDto();
         }
 
-        public IList<ReservationDto> GetReservationen() {
+        public List<ReservationDto> GetReservationen() {
             return bc.GetReservationen().ConvertToDtos();
         }
 
-        public void InsertAuto(AutoDto auto) {
+        public AutoDto InsertAuto(AutoDto auto) {
             bc.InsertAuto(auto.ConvertToEntity());
+            return auto;
         }
 
-        public void InsertKunde(KundeDto kunde) {
+        public KundeDto InsertKunde(KundeDto kunde) {
             bc.InsertKunde(kunde.ConvertToEntity());
+            return kunde;
         }
 
-        public void InsertReservation(ReservationDto reservation) {
+        public ReservationDto InsertReservation(ReservationDto reservation) {
             bc.InsertReservation(reservation.ConvertToEntity());
+            return reservation;
         }
         //Exceptionhandling
-        public void UpdateAuto(AutoDto auto) {
+        public AutoDto UpdateAuto(AutoDto auto) {
             try {
                 bc.UpdateAuto(auto.ConvertToEntity());
             }
-            catch (LocalOptimisticConcurrencyException<AutoDto>) {
-                
+            catch (LocalOptimisticConcurrencyException<Auto> e) {
+                throw new FaultException<AutoDto>(e.MergedEntity.ConvertToDto(), e.Message);
             }
+            return auto;
         }
 
-        public void UpdateKunde(KundeDto kunde) {
+        public KundeDto UpdateKunde(KundeDto kunde) {
             try {
                 bc.UpdateKunde(kunde.ConvertToEntity());
+            } 
+            catch (LocalOptimisticConcurrencyException<Kunde> e) {
+                throw new FaultException<KundeDto>(e.MergedEntity.ConvertToDto(), e.Message);
             }
-            catch (LocalOptimisticConcurrencyException<KundeDto>) {
-                
-            }
+            return kunde;
         }
 
-        public void UpdateReservation(ReservationDto reservation) {
+        public ReservationDto UpdateReservation(ReservationDto reservation) {
             try {
                 bc.UpdateReservation(reservation.ConvertToEntity());
+            } 
+            catch (LocalOptimisticConcurrencyException<Reservation> e) {
+                throw new FaultException<ReservationDto>(e.MergedEntity.ConvertToDto(), e.Message);
             }
-            catch (LocalOptimisticConcurrencyException<ReservationDto>) {
-                
-            }
+            return reservation;
         }
     }
 }
