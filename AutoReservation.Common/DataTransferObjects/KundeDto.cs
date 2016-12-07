@@ -45,7 +45,7 @@ namespace AutoReservation.Common.DataTransferObjects
             get { return nachname; }
             set
             {
-                if (!nachname.Equals(value))
+                if (nachname != value)
                 {
                     nachname = value;
                     OnPropertyChanged(nameof(Nachname));
@@ -75,7 +75,7 @@ namespace AutoReservation.Common.DataTransferObjects
             get { return vorname; }
             set
             {
-                if (!vorname.Equals(value))
+                if (vorname != value)
                 {
                     vorname = value;
                     OnPropertyChanged(nameof(Vorname));
