@@ -65,7 +65,7 @@ namespace AutoReservation.BusinessLayer
                 if (res != null) {
                     return res;
                 }
-                else {
+                else { //only throw Exceptions on Update?
                     throw new Exception();
                 }
             }
