@@ -134,7 +134,7 @@ namespace AutoReservation.BusinessLayer
         }
 
         public void DeleteAuto(Auto auto) {
-            using (var db = new AutoReservationContext) {
+            using (var db = new AutoReservationContext()) {
                 db.Entry(auto).State = EntityState.Deleted;
                 db.SaveChanges();
             }
