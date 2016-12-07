@@ -31,10 +31,10 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void UpdateAutoTest()
         {
-            Auto changeAuto = Target.GetAutos()[0];
+           Auto changeAuto = Target.GetAutoById(1);
             changeAuto.Marke = "TestMarke";
-            Target.UpdateAuto(changeAuto);
-            Assert.AreEqual(changeAuto, Target.GetAutos()[0]);
+            Target.UpdateAuto(changeAuto); 
+            Assert.AreEqual(changeAuto.Marke, Target.GetAutoById(1).Marke);    
         }
 
         [TestMethod]
