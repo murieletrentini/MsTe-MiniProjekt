@@ -30,7 +30,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public IList<Auto> GetAutos() {
+        public List<Auto> GetAutos() {
             using (var db = new AutoReservationContext()) {
                 List<Auto> list = db.Autos.ToList();
                 return list;
@@ -44,7 +44,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public IList<Kunde> GetKunden() {
+        public List<Kunde> GetKunden() {
             using (var db = new AutoReservationContext()) {
                 List<Kunde> list = db.Kunden.ToList();
                 return list;
@@ -53,15 +53,19 @@ namespace AutoReservation.BusinessLayer
 
         public Reservation GetReservationById(int Id) {
             using (var db = new AutoReservationContext()) {
-                Reservation res = db.Reservationen.Find(Id);
-                return res;
+                return db.Reservationen
+                    .Include(res => res.Kunde)
+                    .Include(res => res.Auto)
+                    .SingleOrDefault(r => r.ReservationsNr == Id);
             }
         }
 
-        public IList<Reservation> GetReservationen() {
+        public List<Reservation> GetReservationen() {
             using (var db = new AutoReservationContext()) {
-                List<Reservation> list = db.Reservationen.ToList();
-                return list;
+                return db.Reservationen
+                    .Include(res => res.Auto)
+                    .Include(res => res.Kunde)
+                    .ToList<Reservation>();
             }
         }
 
@@ -84,6 +88,8 @@ namespace AutoReservation.BusinessLayer
         public Reservation InsertReservation(Reservation reservation) {
             using (var db = new AutoReservationContext()) {
                 db.Entry(reservation).State = EntityState.Added;
+                db.Entry(reservation).Reference(res => res.Auto).Load();
+                db.Entry(reservation).Reference(res => res.Kunde).Load();
                 db.SaveChanges();
             }
             return reservation;
@@ -118,6 +124,8 @@ namespace AutoReservation.BusinessLayer
             using (var db = new AutoReservationContext()) {
                 try {
                     db.Entry(reservation).State = EntityState.Modified;
+                    db.Entry(reservation).Reference(res => res.Auto).Load();
+                    db.Entry(reservation).Reference(res => res.Kunde).Load();
                     db.SaveChanges();
                 } catch (DbUpdateConcurrencyException) {
                     throw CreateLocalOptimisticConcurrencyException(db, reservation);

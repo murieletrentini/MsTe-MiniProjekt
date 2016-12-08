@@ -68,10 +68,11 @@ namespace AutoReservation.Service.Wcf {
         }
 
         public ReservationDto InsertReservation(ReservationDto reservation) {
+            
             bc.InsertReservation(reservation.ConvertToEntity());
             return reservation;
         }
-        //Exceptionhandling
+      
         public AutoDto UpdateAuto(AutoDto auto) {
             try {
                 bc.UpdateAuto(auto.ConvertToEntity());
