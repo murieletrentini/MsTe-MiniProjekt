@@ -221,7 +221,7 @@ namespace AutoReservation.Service.Wcf.Testing
         }
 
         [TestMethod]
-        [ExpectedException(typeof(LocalOptimisticConcurrencyException<KundeDto>))]
+        [ExpectedException(typeof(FaultException<KundeDto>))]
         public void UpdateKundeWithOptimisticConcurrencyTest()
         {
             KundeDto kunde1 = Target.GetKundeById(1);
@@ -233,7 +233,7 @@ namespace AutoReservation.Service.Wcf.Testing
         }
 
         [TestMethod]
-        [ExpectedException(typeof(LocalOptimisticConcurrencyException<ReservationDto>))]
+        [ExpectedException(typeof(FaultException<ReservationDto>))]
         public void UpdateReservationWithOptimisticConcurrencyTest()
         {
             ReservationDto res1 = Target.GetReservationById(1);
