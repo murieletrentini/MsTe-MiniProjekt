@@ -70,7 +70,7 @@ namespace AutoReservation.Service.Wcf.Testing
         public void GetReservationByNrTest()
         {
             ReservationDto res = Target.GetReservationById(1);
-            Assert.AreEqual(res.Kunde, Target.GetReservationById(1).Kunde);
+            Assert.AreEqual(res.Kunde.Nachname, Target.GetReservationById(1).Kunde.Nachname);
         }
 
         #endregion
@@ -126,21 +126,14 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void InsertReservationTest()
         {
-            Auto auto = new LuxusklasseAuto();
-            auto.Marke = "Lamborghini";
-            auto.Tagestarif = 150;
-            Target.InsertAuto(auto.ConvertToDto()); 
-            Kunde kunde = new Kunde();
-            kunde.Vorname = "Michael";
-            kunde.Nachname = "Mann";
-            kunde.Geburtsdatum = new DateTime(1992, 3, 14);
-            Target.InsertKunde(kunde.ConvertToDto());
-            Reservation res = new Reservation();
+            AutoDto auto = Target.GetAutoById(1);
+            KundeDto kunde = Target.GetKundeById(1);
+            ReservationDto res = new ReservationDto();
             res.Von = new DateTime(2050, 6, 10);
             res.Bis = new DateTime(2051, 6, 10);
             res.Auto = auto;
             res.Kunde = kunde;
-            Target.InsertReservation(res.ConvertToDto());
+            Target.InsertReservation(res);
             Assert.AreEqual(res.Von, Target.GetReservationById(4).Von);
         }
 

@@ -27,7 +27,7 @@ namespace AutoReservation.BusinessLayer.Testing
         {
             TestEnvironmentHelper.InitializeTestData();
         }
-        
+
         [TestMethod]
         public void UpdateAutoTest()
         {
@@ -54,7 +54,5 @@ namespace AutoReservation.BusinessLayer.Testing
             Target.UpdateReservation(changeRes);
             Assert.AreEqual(changeRes.Bis, Target.GetReservationById(1).Bis);
         }
-
     }
-
 }

@@ -69,7 +69,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
         private AutoDto auto;
         [DataMember]
-        public virtual AutoDto Auto
+        public AutoDto Auto
         {
             get { return auto; }
             set
@@ -82,7 +82,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
         private KundeDto kunde;
         [DataMember]
-        public virtual KundeDto Kunde
+        public KundeDto Kunde
         {
             get { return kunde; }
             set
