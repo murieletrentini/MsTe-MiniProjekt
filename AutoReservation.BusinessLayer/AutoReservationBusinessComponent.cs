@@ -26,10 +26,7 @@ namespace AutoReservation.BusinessLayer
         public Auto GetAutoById(int Id) {
             using (var db = new AutoReservationContext()) {
                 Auto auto = db.Autos.Find(Id);
-                if (auto != null) {
-                    return auto;
-                } else //FaultException {
-                    throw new Exception();
+                return auto;
             }
         }
 
@@ -43,12 +40,7 @@ namespace AutoReservation.BusinessLayer
         public Kunde GetKundeById(int Id) {
             using (var db = new AutoReservationContext()) {
                 Kunde kunde = db.Kunden.Find(Id);
-                if (kunde != null) {
-                    return kunde;
-                }
-                else {
-                    throw new Exception();
-                }
+                return kunde;
             }
         }
 
@@ -62,12 +54,7 @@ namespace AutoReservation.BusinessLayer
         public Reservation GetReservationById(int Id) {
             using (var db = new AutoReservationContext()) {
                 Reservation res = db.Reservationen.Find(Id);
-                if (res != null) {
-                    return res;
-                }
-                else { //only throw Exceptions on Update?
-                    throw new Exception();
-                }
+                return res;
             }
         }
 
