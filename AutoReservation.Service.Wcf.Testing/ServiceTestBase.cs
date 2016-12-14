@@ -27,25 +27,19 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void GetAutosTest()
         {
-            List<AutoDto> list = Target.GetAutos();
-            AutoDto auto = list[1];
-            Assert.AreEqual(auto.Marke, Target.GetAutos()[1].Marke);
+            Assert.AreEqual(3, Target.GetAutos().Count);
         }
 
         [TestMethod]
         public void GetKundenTest()
-        {
-            List<KundeDto> list = Target.GetKunden();
-            KundeDto kunde = list[1];
-            Assert.AreEqual(kunde.Nachname, Target.GetKunden()[1].Nachname);
+        {     
+            Assert.AreEqual("Beil", Target.GetKunden()[1].Nachname);
         }
 
         [TestMethod]
         public void GetReservationenTest()
-        {
-            List<ReservationDto> list = Target.GetReservationen();
-            ReservationDto res = list[1];
-            Assert.AreEqual(res.Auto.Marke, Target.GetReservationen()[1].Auto.Marke);
+        {    
+            Assert.AreEqual("VW Golf", Target.GetReservationen()[1].Auto.Marke);
         }
 
         #endregion
@@ -55,22 +49,19 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void GetAutoByIdTest()
         {
-            AutoDto auto = Target.GetAutoById(1);
-            Assert.AreEqual(auto.Marke, Target.GetAutoById(1).Marke);
+            Assert.AreEqual("Fiat Punto", Target.GetAutoById(1).Marke);
         }
 
         [TestMethod]
         public void GetKundeByIdTest()
         {
-            KundeDto kunde = Target.GetKundeById(1);
-            Assert.AreEqual(kunde.Nachname, Target.GetKundeById(1).Nachname);
+            Assert.AreEqual("Nass", Target.GetKundeById(1).Nachname);
         }
 
         [TestMethod]
         public void GetReservationByNrTest()
         {
-            ReservationDto res = Target.GetReservationById(1);
-            Assert.AreEqual(res.Kunde.Nachname, Target.GetReservationById(1).Kunde.Nachname);
+            Assert.AreEqual("Nass", Target.GetReservationById(1).Kunde.Nachname);
         }
 
         #endregion
