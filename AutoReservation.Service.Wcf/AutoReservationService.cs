@@ -76,31 +76,31 @@ namespace AutoReservation.Service.Wcf {
         public AutoDto UpdateAuto(AutoDto auto) {
             try {
                 bc.UpdateAuto(auto.ConvertToEntity());
+                return auto;
             }
             catch (LocalOptimisticConcurrencyException<Auto> e) {
                 throw new FaultException<AutoDto>(e.MergedEntity.ConvertToDto(), e.Message);
-            }
-            return auto;
+            }     
         }
 
         public KundeDto UpdateKunde(KundeDto kunde) {
             try {
                 bc.UpdateKunde(kunde.ConvertToEntity());
+                return kunde;
             } 
             catch (LocalOptimisticConcurrencyException<Kunde> e) {
                 throw new FaultException<KundeDto>(e.MergedEntity.ConvertToDto(), e.Message);
             }
-            return kunde;
         }
 
         public ReservationDto UpdateReservation(ReservationDto reservation) {
             try {
                 bc.UpdateReservation(reservation.ConvertToEntity());
+                return reservation;
             } 
             catch (LocalOptimisticConcurrencyException<Reservation> e) {
                 throw new FaultException<ReservationDto>(e.MergedEntity.ConvertToDto(), e.Message);
             }
-            return reservation;
         }
     }
 }
